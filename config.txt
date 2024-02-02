@@ -1,0 +1,1 @@
+#define PARAMS "dbname=postgres user=postgres password=1234 hostaddr=127.0.0.1 port=5432"

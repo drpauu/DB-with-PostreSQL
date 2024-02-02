@@ -1,0 +1,193 @@
+-- crea base de dades abans de començar a interactuar amb ella
+-- CREATE DATABASE PROJECTE;
+-- apunta a la bd del projecte
+--\c projecte;
+
+
+-- Creació de taules i restriccions de la BD
+
+CREATE TABLE public.genere(
+	nom text NOT NULL,
+	PRIMARY KEY (nom)
+);
+
+INSERT INTO public.genere VALUES 
+	('Accio'), 
+	('Aventura'), 
+	('Esports'), 
+	('Estrategia'), 
+	('Rol'), 
+	('Simulacio'), 
+	('Tir');
+
+CREATE TABLE public.usuari(
+	sobrenom text NOT NULL,
+	nom text NOT NULL,
+	contrasenya text NOT NULL,
+	correu_electronic text NOT NULL UNIQUE,
+	data_naixement date NOT NULL,
+	PRIMARY KEY (sobrenom)
+);
+
+CREATE TABLE public.element_compra(
+	nom text NOT NULL,
+	descripcio text NOT NULL,
+	preu float NOT NULL,
+	tipus text NOT NULL,
+	CHECK (preu >= 0),
+	CHECK (tipus = 'paquet' OR tipus = 'videojoc'),
+	PRIMARY KEY (nom)
+);
+
+INSERT INTO public.element_compra VALUES
+	('Cyberpunk 2077', 'Cyberpunk 2077 is an open-world, action-adventure RPG set in the dark future of Night City — a dangerous megalopolis obsessed with power, glamor, and ceaseless body modification.', 59.99, 'videojoc'),
+	('Forza Horizon 5', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars.', 59.99, 'videojoc'),
+	('Deep Rock Galactic', 'Deep Rock Galactic is a 1-4 player co-op FPS featuring badass space Dwarves, 100% destructible environments, procedurally-generated caves, and endless hordes of alien monsters.', 29.99, 'videojoc'),
+	('The Elder Scrolls V: Skyrim Special Edition', 'Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features.', 39.99, 'videojoc'),
+	('Counter-Strike 2', 'For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe. And now the next chapter in the CS story is about to begin. This is Counter-Strike 2.', 0, 'videojoc'),
+	('Northgard', 'Northgard is a critically acclaimed strategy game based on Norse mythology. Lead your clan, uncover the secrets of a mysterious newfound continent and defeat your enemies to conquer the Throne!', 27.99, 'videojoc'),
+	('EA SPORTS FC 24', 'EA SPORTS FC 24 welcomes you to The World’s Game: the most true-to-football experience ever with HyperMotionV, PlayStyles optimised by Opta, and an enhanced Frostbite Engine.', 69.99, 'videojoc'),
+	('F1 23', 'Be the last to brake in EA SPORTS F1 23, the official video game of the 2023 FIA Formula One World Championship. A new chapter in the thrilling "Braking Point" story mode delivers high-speed drama and heated rivalries.', 69.99, 'videojoc'),
+	('UNCHARTED: Legacy of Thieves Collection', 'Play as Nathan Drake and Chloe Frazer in their own standalone adventures as they confront their pasts and forge their own legacies. This game includes the critically acclaimed single-player stories from both UNCHARTED 4: A Thief’s End and UNCHARTED: The Lost Legacy.', 49.99, 'videojoc'),
+	('Portal', 'Portal is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.', 9.75, 'videojoc'),
+	('Portal 2', 'The "Perpetual Testing Initiative" has been expanded to allow you to design co-op puzzles for you and your friends!', 9.75, 'videojoc'),
+	('Half-Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valves debut title wins more than 50 game-of-the-year awards on its way to being named "Best PC Game Ever" by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.', 9.75, 'videojoc'),
+	('Metro Exodus', 'Flee the shattered ruins of the Moscow Metro and embark on an epic, continent-spanning journey across the post-apocalyptic Russian wilderness. Explore vast, non-linear levels, lose yourself in an immersive, sandbox survival experience, and follow a thrilling story-line that spans an entire year in the greatest Metro adventure yet.', 29.99, 'videojoc'),
+	('METAL GEAR SOLID V: THE PHANTOM PAIN', 'Ushering in a new era for the METAL GEAR franchise with cutting-edge technology powered by the Fox Engine, METAL GEAR SOLID V: The Phantom Pain, will provide players a first-rate gaming experience as they are offered tactical freedom to carry out open-world missions.', 29.99, 'videojoc'),
+	('Euro Truck Simulator 2', 'Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! With dozens of cities to explore, your endurance, skill and speed will all be pushed to their limits.', 29.99, 'videojoc'),
+	('DOOM Eternal', 'Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity. The only thing they fear... is you.', 39.99, 'videojoc'),
+	('DOOM 3', 'A demonic invasion has overwhelmed the Union Aerospace Corporations Mars research facility. As one of only a few survivors, you must fight your way to hell and back against a horde of demons in this award-winning horror/action FPS and reimagining of the original DOOM.', 9.99, 'videojoc'),
+	('DOOM (1993)', 'You are a marine—one of Earths best—recently assigned to the Union Aerospace Corporation (UAC) research facility on Mars. When an experiment malfunctions and creates a portal to Hell, the base is overrun by blood-thirsty demons. You must shoot your way out to survive.', 4.99, 'videojoc'),
+	('DOOM II', 'Hell has invaded Earth, and to save it, you must battle mightier demons with even more powerful weapons. This beloved sequel to the groundbreaking DOOM (1993) introduced players to the brutal Super Shotgun, the infamous Icon of Sin boss, and more intense FPS action.', 4.99, 'videojoc'),
+	('DEATH STRANDING DIRECTORS CUT', 'From legendary game creator Hideo Kojima comes a genre-defying experience, now expanded in this definitive DIRECTORS CUT. As Sam Bridges, your mission is to deliver hope to humanity by connecting the last survivors of a decimated America. Can you reunite the shattered world, one step at a time?', 39.99, 'videojoc'),
+	('Titanfall 2', 'Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign & multiplayer experience. Combine & conquer with new titans & pilots, deadlier weapons, & customization and progression systems that help you and your titan flow as one unstoppable killing force.', 29.99,'videojoc'),
+	('Fallout 4', 'Bethesda Game Studios, the award-winning creators of Fallout 3 and The Elder Scrolls V: Skyrim, welcome you to the world of Fallout 4 – their most ambitious game ever, and the next generation of open-world gaming.', 19.99, 'videojoc'),
+	('Fallout 76', 'Bethesda Game Studios welcome you to Fallout 76. Twenty-five years after the bombs fall, you and your fellow Vault Dwellers emerge into post-nuclear America. Explore a vast wasteland in this open-world multiplayer addition to the Fallout story.', 39.99, 'videojoc'),
+	('Fallout 3', 'Vault-Tec engineers have worked around the clock on an interactive reproduction of Wasteland life for you to enjoy from the comfort of your own vault. Included is an expansive world, unique combat, shockingly realistic visuals, tons of player choice, and an incredible cast of dynamic characters.', 9.99, 'videojoc'),
+	('The Witcher 3: Wild Hunt', 'You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.', 29.99, 'videojoc'),
+	('The Witcher 2', 'A time of untold chaos has come. Mighty forces clash behind the scenes in a struggle for power and influence. The Northern Kingdoms mobilize for war. But armies on the march are not enough to stop a bloody conspiracy...', 19.99, 'videojoc'),
+	('Sea Of Thieves', 'Celebrate five years since Sea of Thieves launch with this special edition, including a copy of the game with all permanent content added since launch, plus a 10,000 gold bonus and a selection of Hunter cosmetics: the Hunter Cutlass, Pistol, Compass, Hat, Jacket and Sails.', 39.99, 'videojoc'),
+	('BattleBit Remastered', 'BattleBit Remastered is a low-poly, massive multiplayer FPS, supporting 254 players per server. Battle on a near-fully destructible map with various vehicles!', 14.79, 'videojoc'),
+	('EA SPORTS WRC', 'Build the car of your dreams in our biggest rally game ever, EA SPORTS WRC, the all-new official videogame of the FIA World Rally Championship, the first developed by the award-winning team behind the DiRT Rally series.', 49.99, 'videojoc'),
+	('We Were Here Forever', 'You both awaken imprisoned inside the sinister Castle Rock - were you betrayed, or simply not that clever? Find out in the greatest co-op puzzle adventure in the We Were Here Series! Do you and your partner have what it takes to face the dark forces of this realm or will you be trapped… forever?', 17.99, 'videojoc'),
+	('Assassins Creed Valhalla', 'Become a legendary Viking on a quest for glory. Raid your enemies, grow your settlement, and build your political power.', 59.99, 'videojoc'),
+	('Valve', 'Valve debut title, Half-Life, was released in 1998. Since then, we have released dozens of titles that changed the world (and one that did not). Today, millions of people play our games every day.', 19.99, 'paquet'),
+	('DOOM', 'Developed by id Software starting in 1993, experience all 25+ years of the legendary and timeless series of games that defined the first-person shooter genre and that continues to deliver action-packed, power fantasy gameplay today. Times change but DOOM is eternal.', 49.99, 'paquet'),
+	('EA', 'Headquartered in Redwood City in Northern California, we develop and deliver games, content, and online services for Internet-connected consoles, mobile devices, and personal computers. Through our cutting-edge games, innovative services, and powerful technologies, we bring worlds with infinite possibilities to nearly 600 million active players and fans around the globe.', 149.99, 'paquet'),
+	('Hideo Kojima', 'Hideo Kojima is a Japanese video game designer. He is regarded as an auteur of video games. He developed a strong passion for action/adventure cinema and literature during his childhood and adolescence. In 1986, he was hired by Konami, for which he designed and wrote Metal Gear (1987) for the MSX2, a game that laid the foundations for stealth games and the Metal Gear series, his best known and most appreciated works.', 49.99, 'paquet'),
+	('Bethesda', 'Bethesda is an American video game publisher based in Rockville, Maryland. The company was founded by Christopher Weaver in 1986 as a division of Media Technology Limited. In 1999, it became a subsidiary of ZeniMax Media. In its first 15 years, it was a video game developer and self-published its titles. In 2001, Bethesda spun off its in-house development team into Bethesda Game Studios, leaving Bethesda Softworks to focus on publishing operations.', 99.99, 'paquet'),
+	('CD Projekt RED', 'CD PROJEKT RED is a development studio founded in 2002. Our mission is to tell emotional stories riddled with meaningful choices and consequences, as well as featuring characters gamers can truly connect with.', 79.99, 'paquet'),
+	('Puzzle', 'A puzzle is a game, problem, or toy that tests a person ingenuity or knowledge. In a puzzle, the solver is expected to put pieces together (or take them apart) in a logical way, in order to arrive at the correct or fun solution of the puzzle. There are different genres of puzzles, such as crossword puzzles, word-search puzzles, number puzzles, relational puzzles, and logic puzzles. Puzzles are often created to be a form of entertainment but they can also arise from serious mathematical or logical problems.', 24.99, 'paquet');
+
+CREATE TABLE public.paquet_videojoc(
+	nom text NOT NULL,
+	PRIMARY KEY (nom),
+	FOREIGN KEY (nom) REFERENCES element_compra(nom)
+);
+
+INSERT INTO public.paquet_videojoc VALUES
+	('Valve'),
+	('DOOM'),
+	('EA'),
+	('Hideo Kojima'),
+	('Bethesda'),
+	('CD Projekt RED'),
+	('Puzzle');
+
+CREATE TABLE public.videojoc(
+	nom text NOT NULL,
+	genere text NOT NULL,
+	qualificacio_edat int NOT NULL,
+	data_llansament date NOT NULL,
+	mins_estimat int,
+	PRIMARY KEY (nom),
+	FOREIGN KEY (nom) REFERENCES element_compra(nom),
+	FOREIGN KEY (genere) REFERENCES genere(nom),
+	CHECK (qualificacio_edat = 3 OR qualificacio_edat = 7 OR qualificacio_edat = 12 OR qualificacio_edat = 16 OR qualificacio_edat = 18),
+	CHECK (mins_estimat = NULL OR mins_estimat > 0)
+);
+
+INSERT INTO public.videojoc VALUES 
+	('Cyberpunk 2077', 'Rol', 18, '2020-12-10', NULL),
+	('Forza Horizon 5', 'Simulacio', 3, '2021-11-09', NULL),
+	('Deep Rock Galactic', 'Accio', 16, '2020-05-13', NULL),
+	('The Elder Scrolls V: Skyrim Special Edition', 'Aventura', 18, '2016-10-28', NULL),
+	('Counter-Strike 2', 'Tir', 16, '2012-08-21', NULL),
+	('Northgard', 'Estrategia', 12, '2018-03-07', NULL),
+	('EA SPORTS FC 24', 'Esports', 3, '2023-09-29', NULL),
+	('F1 23', 'Simulacio', 3, '2023-06-16', NULL),
+	('UNCHARTED: Legacy of Thieves Collection', 'Aventura', 16, '2022-10-19', NULL),
+	('Portal', 'Aventura', 3, '2007-10-10', NULL),
+	('Portal 2', 'Aventura', 3, '2011-04-19', NULL),
+	('Half-Life 2', 'Aventura', 16, '2004-11-16', NULL),
+	('Metro Exodus', 'Accio', 18, '2019-02-14', NULL),
+	('METAL GEAR SOLID V: THE PHANTOM PAIN', 'Tir', 18, '2015-09-01', NULL),
+	('Euro Truck Simulator 2', 'Simulacio', 3, '2012-10-18', NULL),
+	('DOOM Eternal', 'Tir', 18, '2020-03-20', NULL),
+	('DOOM 3', 'Tir', 18, '2012-10-19', NULL),
+	('DOOM (1993)', 'Tir', 16, '1995-04-30', NULL),
+	('DOOM II', 'Tir', 16, '1994-05-05', NULL),
+	('DEATH STRANDING DIRECTORS CUT', 'Aventura', 16,'2022-03-30', NULL),
+	('Titanfall 2', 'Tir', 16,'2016-10-28', NULL),
+	('Fallout 4', 'Rol', 18,'2015-11-10', NULL),
+	('Fallout 76', 'Aventura', 18,'2020-04-14', NULL),
+	('Fallout 3', 'Rol', 18,'2009-10-13', NULL),
+	('The Witcher 3: Wild Hunt', 'Rol', 18,'2015-05-18', NULL),
+	('The Witcher 2', 'Rol', 18,'2011-05-17', NULL),
+	('Sea Of Thieves', 'Aventura', 12,'2020-06-03', NULL),
+	('BattleBit Remastered', 'Accio', 16,'2023-06-15', NULL),
+	('EA SPORTS WRC', 'Simulacio', 3,'2023-11-03', NULL),
+	('We Were Here Forever', 'Aventura', 7, '2022-05-10', NULL),
+	('Assassins Creed Valhalla', 'Aventura', 18, '2022-12-06', NULL);
+
+CREATE TABLE public.compra(
+	usuari text NOT NULL,
+	element text NOT NULL,
+	data date NOT NULL,
+	preu_pagat float NOT NULL,
+	PRIMARY KEY (usuari, element),
+	FOREIGN KEY (usuari) REFERENCES usuari(sobrenom) ON DELETE CASCADE,
+	FOREIGN KEY (element) REFERENCES element_compra(nom) ON DELETE CASCADE,
+	CHECK (preu_pagat > 0)
+);
+
+CREATE TABLE public.conte(
+	paquet text NOT NULL,
+	videojoc text NOT NULL,
+	PRIMARY KEY (paquet, videojoc),
+	FOREIGN KEY (paquet) REFERENCES paquet_videojoc(nom),
+	FOREIGN KEY (videojoc) REFERENCES videojoc(nom) ON DELETE CASCADE
+);
+
+INSERT INTO public.conte VALUES
+	('Valve', 'Portal'),
+	('Valve', 'Portal 2'),
+	('Valve', 'Counter-Strike 2'),
+	('Valve', 'Half-Life 2'),
+	('DOOM', 'DOOM Eternal'),
+	('DOOM', 'DOOM II'),
+	('DOOM', 'DOOM 3'),
+	('DOOM', 'DOOM (1993)'),
+	('Hideo Kojima', 'METAL GEAR SOLID V: THE PHANTOM PAIN'),
+	('Hideo Kojima', 'DEATH STRANDING DIRECTORS CUT'),
+	('EA', 'EA SPORTS WRC'),
+	('EA', 'F1 23'),
+	('EA', 'EA SPORTS FC 24'),
+	('EA', 'Titanfall 2'),
+	('Bethesda', 'Fallout 4'),
+	('Bethesda', 'Fallout 3'),
+	('Bethesda', 'Fallout 76'),
+	('Bethesda', 'DOOM Eternal'),
+	('Bethesda', 'The Elder Scrolls V: Skyrim Special Edition'),
+	('CD Projekt RED', 'Cyberpunk 2077'),
+	('CD Projekt RED', 'The Witcher 2'),
+	('CD Projekt RED', 'The Witcher 3: Wild Hunt'),
+	('Puzzle', 'Portal'),
+	('Puzzle', 'Portal 2'),
+	('Puzzle', 'We Were Here Forever');
+
+CREATE VIEW public.preu_jocs AS
+SELECT paquet_videojoc.nom AS nom_paquet, sum(element_compra.preu) AS preu_jocs
+	FROM conte, paquet_videojoc, element_compra
+	WHERE conte.paquet = paquet_videojoc.nom AND conte.videojoc = element_compra.nom
+	GROUP BY paquet_videojoc.nom;
